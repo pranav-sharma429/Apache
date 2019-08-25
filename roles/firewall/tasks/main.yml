@@ -1,0 +1,38 @@
+---
+- name: Adding Database service to internal firewalld
+  firewalld:
+     service: http
+     permanent: true
+     state: enabled
+  notify: reloading firewalld
+  when: "ansible_os_family == 'RedHat' and ansible_distribution_major_version == '7'"
+
+
+- name: Adding Database service to internal firewalld
+  firewalld:
+     service: https
+     permanent: true
+     state: enabled
+  notify: reloading firewalld
+  when: "ansible_os_family == 'RedHat' and ansible_distribution_major_version == '7'"
+
+- name: Adding iptables rules 
+  iptables:
+    chain: INPUT
+    protocol: tcp
+    destination_port: "{{ apache_listen_port }}"
+    jump: ACCEPT
+    comment: Accept new http connections
+  notify: saving iptables
+  when: "ansible_os_family == 'RedHat' and ansible_distribution_major_version == '6'"
+
+- name: Adding iptables rules
+  iptables:
+    chain: INPUT
+    protocol: tcp
+    destination_port: "{{ https_port }}"
+    jump: ACCEPT
+    comment: Accept new https connections
+  notify: saving iptables
+  when: "ansible_os_family == 'RedHat' and ansible_distribution_major_version == '6'"
+

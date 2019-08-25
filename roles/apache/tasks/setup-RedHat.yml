@@ -1,0 +1,12 @@
+---
+- name: Ensure Apache is installed on RHEL.
+  yum:
+    name: "{{ item }}"
+    state: installed
+  with_items: "{{ apache_packages }}"
+  tags: packages
+
+- name: copying required files
+  copy: src=Quacker_The_Duck.jpg dest=/var/www/html/ mode=0755
+- name: copying required files
+  copy: src=index.html dest=/var/www/html/ mode=0755

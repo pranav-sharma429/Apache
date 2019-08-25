@@ -1,0 +1,6 @@
+---
+- name: Installing packages
+  yum:
+    name: httpd,httpd-devel,openssh,mod_ssl
+    state: present
+

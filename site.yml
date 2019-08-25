@@ -1,0 +1,10 @@
+---
+- hosts: all
+  remote_user: root
+  vars:
+     ans1: "{{ ans }}"
+  roles:
+    - firewall
+    - package
+    - apache
+     

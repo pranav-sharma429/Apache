@@ -1,0 +1,31 @@
+---
+apache_listen_port: 80
+apache_listen_ip: "*"
+https_port: 443
+apache_enablerepo: ""
+Document_Root: "/var/www/html"
+SSL_Cert_Dir: "/etc/pki/tls/certs/"
+apache_packages_state: "installed"
+apache_create_vhosts: true
+apache_vhosts_filename: "vhosts.conf"
+apache_vhosts_template: "vhosts.conf.j2"
+server_name: "{{ ansible_hostname }}"
+apache_remove_default_vhost: false
+
+apache_global_vhost_settings: |
+  DirectoryIndex index.php index.html
+apache_vhosts:
+  - servername: "local.dev"
+    documentroot: "/var/www/html"
+apache_allow_override: "All"
+apache_options: "-Indexes +FollowSymLinks"
+apache_vhosts_ssl: []
+apache_state: started
+apache_restart_state: restarted
+
+
+
+
+
+
+

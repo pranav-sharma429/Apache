@@ -1,0 +1,21 @@
+---
+galaxy_info:
+  author: Pranav Sharma
+  company: 
+  description: Apache
+  license: license (BSD)
+  min_ansible_version: 2.3
+  platforms:
+  - name: Redhat
+    versions:
+    - all
+  - name: CentOS
+    versions:
+    - all
+  galaxy_tags:
+    - apache
+  categories:
+    - web
+
+dependencies:
+    - { role: firewall, service_state: running }
